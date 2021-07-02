@@ -3,7 +3,7 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Book;
-import pl.coderslab.services.MockBookService;
+import pl.coderslab.services.BookService;
 
 import java.util.List;
 
@@ -11,35 +11,35 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    MockBookService mockBookService;
+    private final BookService bookService;
 
     @Autowired
-    public BookController(MockBookService mockBookService) {
-        this.mockBookService = mockBookService;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @RequestMapping("")
     public List<Book> getAllBooks() {
-        return mockBookService.getAllBooks();
+        return bookService.getAllBooks();
     }
 
     @RequestMapping("/{id}")
     public Book getBookById(@PathVariable Long id) {
-        return mockBookService.getBookById(id);
+        return bookService.getBookById(id);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public void addBook(@RequestBody Book book) {
-        mockBookService.addBook(book);
+        bookService.addBook(book);
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public void editBook(@RequestBody Book book) {
-        mockBookService.editBook(book);
+        bookService.editBook(book);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void removeBook(@PathVariable Long id) {
-        mockBookService.removeBookById(id);
+        bookService.removeBookById(id);
     }
 }

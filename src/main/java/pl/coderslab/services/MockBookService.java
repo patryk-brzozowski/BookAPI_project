@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class MockBookService {
+public class MockBookService implements BookService {
     private List<Book> list;
     private static Long nextId = 4L;
 
@@ -50,11 +50,11 @@ public class MockBookService {
     public void editBook(Book book) {
         int index=-1;
         for (Book bookToFind : list) {
-            if(bookToFind.getId() == book.getId()) {
+            if(bookToFind.getId().equals(book.getId())) {
                 index = list.indexOf(bookToFind);
             }
-            list.set(index, book);
         }
+        list.set(index, book);
     }
 
     public void removeBookById(Long id) {
