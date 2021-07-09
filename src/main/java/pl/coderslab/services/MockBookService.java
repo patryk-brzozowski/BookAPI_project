@@ -20,13 +20,6 @@ public class MockBookService implements BookService {
                 "programming"));
     }
 
-    public List<Book> getList() {
-        return list;
-    }
-
-    public void setList(List<Book> list) {
-        this.list = list;
-    }
 
     public List<Book> getAllBooks() {
         return list;
